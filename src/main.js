@@ -1,6 +1,6 @@
-import LD48 from './ld48'
+import JapariBunCatch from './japari-bun-catch'
 
-var ld48
+var app
 window.onload = function() {
-  window.ld48 = new LD48()
+  window.app = new JapariBunCatch()
 }
