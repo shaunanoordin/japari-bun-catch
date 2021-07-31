@@ -3,6 +3,7 @@ import {
   PLAYER_ACTIONS,
 } from './constants'
 import ImageAsset from './image-asset'
+import LuckyBeast from './entities/lucky-beast'
 
 const searchParams = new URLSearchParams(window.location.search)
 const DEBUG = searchParams.get('debug') || false
@@ -24,7 +25,7 @@ class JapariBunCatch {
     this.initialised = false
     this.assets = {}
     
-    this.hero = null
+    this.luckyBeast = null
     this.entities = []
     
     this.prevTime = null
@@ -123,7 +124,7 @@ class JapariBunCatch {
 
     // Draw entities
     // ----------------
-    this.entities.forEach(entity => entity.paint(layer))
+    this.entities.forEach(entity => entity.paint())
     // ----------------
     
     // Draw UI data
@@ -142,7 +143,7 @@ class JapariBunCatch {
     
     this.html.buttonReload.addEventListener('click', this.buttonReload_onClick.bind(this))
     
-    this.html.main.addEventListener('keypress', this.onKeyPress.bind(this))
+    this.html.main.addEventListener('keydown', this.onKeyDown.bind(this))
     
     window.addEventListener('resize', this.updateUI.bind(this))
     this.updateUI()
@@ -165,14 +166,24 @@ class JapariBunCatch {
     const canvasBounds = this.html.canvas.getBoundingClientRect()
   }
   
-  onKeyPress (e) {
-    console.log('+++ e.key: ', e.key)
-    
-    return stopEvent(e)
+  onKeyDown (e) {
+    if (this.luckyBeast) {
+      switch (e.key) {
+        case 'ArrowRight':
+          this.luckyBeast.move(1)
+          return stopEvent(e)
+          break
+        case 'ArrowLeft':
+          this.luckyBeast.move(-1)
+          return stopEvent(e)
+          break
+      }
+    }
   }
   
   buttonReload_onClick () {
     this.startGame()
+    this.html.main.focus()
   }
   
   /*
@@ -181,6 +192,10 @@ class JapariBunCatch {
    */
   
   startGame () {
+    this.entities = []
+    
+    this.luckyBeast = new LuckyBeast(this)
+    this.entities.push(this.luckyBeast)
   }
 }
 

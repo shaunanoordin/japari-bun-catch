@@ -7,6 +7,10 @@ export const PLAYER_ACTIONS = {
   POINTER_DOWN: 'pointer down',  // Player is actively interacting with the canvas.
 }
 
+export const COLUMNS_FOR_BUNS = 5
+export const COLUMNS_FOR_LUCKY_BEAST = 6
+export const MAX_BUNS_LUCKY_BEAST_CAN_CARRY = 3
+
 /*
 While the engine is technically able to support any given framerate (determined
 by the hardware), a baseline is required to ground our video game logic to.
