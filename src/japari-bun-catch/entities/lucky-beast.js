@@ -31,7 +31,9 @@ class LuckyBeast extends Entity {
     const c2d = this._app.canvas2d
     
     c2d.fillStyle = '#48c'
+    c2d.beginPath()
     c2d.rect(X_COORDS[this.col], Y_COORDS, WIDTH, HEIGHT)
+    c2d.closePath()
     c2d.fill()
   }
   

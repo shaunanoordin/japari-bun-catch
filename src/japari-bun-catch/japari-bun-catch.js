@@ -92,13 +92,12 @@ class JapariBunCatch {
     const c2d = this.canvas2d
     
     c2d.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
-    
-    c2d.strokeStyle = 'rgba(128, 128, 128, 0.05)'
-    c2d.lineWidth = 2
     // ----------------
     
     // Draw grid
     // ----------------
+    c2d.strokeStyle = 'rgba(128, 128, 128, 0.05)'
+    c2d.lineWidth = 2
     const offsetX = 0
     const offsetY = 0
     
@@ -106,18 +105,8 @@ class JapariBunCatch {
       for (let x = offsetX ; x < APP_WIDTH ; x += TILE_SIZE) {
         c2d.beginPath()
         c2d.rect(x, y, TILE_SIZE, TILE_SIZE)
+        c2d.closePath()
         c2d.stroke()
-        
-        // Debug Grid
-        if (DEBUG) {
-          c2d.fillStyle = '#ccc'
-          c2d.font = `1em Source Code Pro`
-          c2d.textAlign = 'center'
-          c2d.textBaseline = 'middle'
-          const col = Math.floor(x / TILE_SIZE)
-          const row = Math.floor(y / TILE_SIZE)
-          c2d.fillText(col + ',' + row, x + TILE_SIZE / 2, y + TILE_SIZE / 2)  // using template strings here messes up colours in Brackets.
-        }
       }
     }
     // ----------------
