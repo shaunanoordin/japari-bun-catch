@@ -38,6 +38,7 @@ class JapariBunCatch {
     this.friend = null
     this.entities = []
     
+    this.score = 0
     this.timeToNextBun = 0
     
     this.prevTime = null
@@ -140,6 +141,12 @@ class JapariBunCatch {
     
     // Draw UI data
     // ----------------
+    const OFFSET = 20
+    c2d.textAlign = 'right'
+    c2d.textBaseline = 'top'
+    c2d.fillStyle = '#c44'
+    c2d.font = '1em monospace'
+    c2d.fillText(this.score + ' すごい', APP_WIDTH - OFFSET, OFFSET)
     // ----------------
   }
   
@@ -214,6 +221,7 @@ class JapariBunCatch {
   
   startGame () {
     this.entities = []
+    this.score = 0
     
     this.luckyBeast = new LuckyBeast(this)
     this.entities.push(this.luckyBeast)

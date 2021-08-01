@@ -80,6 +80,7 @@ class LuckyBeast extends Entity {
   }
   
   giveBuns () {
+    this._app.score += this.buns
     this.buns = 0
   }
 }
