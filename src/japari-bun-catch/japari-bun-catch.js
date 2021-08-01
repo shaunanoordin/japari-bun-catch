@@ -15,6 +15,8 @@ class JapariBunCatch {
     this.html = {
       main: document.getElementById('main'),
       canvas: document.getElementById('canvas'),
+      buttonLeft: document.getElementById('button-left'),
+      buttonRight: document.getElementById('button-right'),
       buttonReload: document.getElementById('button-reload'),
     }
     
@@ -151,6 +153,8 @@ class JapariBunCatch {
     this.html.canvas.height = this.canvasHeight
     
     this.html.buttonReload.addEventListener('click', this.buttonReload_onClick.bind(this))
+    this.html.buttonLeft.addEventListener('click', this.buttonLeft_onClick.bind(this))
+    this.html.buttonRight.addEventListener('click', this.buttonRight_onClick.bind(this))
     
     this.html.main.addEventListener('keydown', this.onKeyDown.bind(this))
     
@@ -193,6 +197,14 @@ class JapariBunCatch {
   buttonReload_onClick () {
     this.startGame()
     this.html.main.focus()
+  }
+  
+  buttonLeft_onClick () {
+    this.luckyBeast.move(DIRECTIONS.WEST)
+  }
+  
+  buttonRight_onClick () {
+    this.luckyBeast.move(DIRECTIONS.EAST)
   }
   
   /*

@@ -85,6 +85,10 @@ table th {
 #app > main.fullscreen #canvas {
   max-height: 100vh;
 }
+#app > main #controls {
+  max-width: 100vw;
+  margin: auto auto;
+}
 #app > main .ui-button {
   position: absolute;
   cursor: pointer;
@@ -101,6 +105,25 @@ table th {
   border: 2px solid #888;
 }
 #app > main .ui-button img {
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+#app > main .control-button {
+  cursor: pointer;
+  color: #fff;
+  background: #c44;
+  border: 2px solid #ccc;
+  border-radius: 1rem;
+  box-shadow: 0.1rem 0.1rem 0 rgba(0, 0, 0, 0.5);
+}
+#app > main .control-button:hover {
+  border: 2px solid #fff;
+}
+#app > main .control-button:active {
+  border: 2px solid #888;
+}
+#app > main .control-button img {
   display: block;
   width: 1.5rem;
   height: 1.5rem;
