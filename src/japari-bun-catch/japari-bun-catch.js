@@ -1,8 +1,10 @@
 import {
   APP_WIDTH, APP_HEIGHT, TILE_SIZE, DIRECTIONS,
+  TIME_BETWEEN_BUNS, ROWS_FOR_BUNS, COLUMNS_FOR_BUNS,
 } from './constants'
 import ImageAsset from './image-asset'
 import LuckyBeast from './entities/lucky-beast'
+import Bun from './entities/bun'
 
 const searchParams = new URLSearchParams(window.location.search)
 const DEBUG = searchParams.get('debug') || false
@@ -28,6 +30,8 @@ class JapariBunCatch {
     
     this.luckyBeast = null
     this.entities = []
+    
+    this.timeToNextBun = 0
     
     this.prevTime = null
     this.nextFrame = window.requestAnimationFrame(this.main.bind(this))
@@ -80,13 +84,20 @@ class JapariBunCatch {
   }
   
   play (timeStep) {
-    // Run the action gameplay
-    // ----------------
+    // Run entity logic
     this.entities.forEach(entity => entity.play(timeStep))
+    
+    // Spawn a new bun
+    this.timeToNextBun -= timeStep
+    if (this.timeToNextBun <= 0) {
+      this.timeToNextBun += TIME_BETWEEN_BUNS
+      const newCol = Math.floor(Math.random() * COLUMNS_FOR_BUNS)
+      const newBun = new Bun(this, newCol)
+      this.entities.push(newBun)
+    }
     
     // Cleanup
     this.entities = this.entities.filter(entity => !entity._expired)
-    // ----------------
   }
   
   paint () {
@@ -186,6 +197,8 @@ class JapariBunCatch {
     
     this.luckyBeast = new LuckyBeast(this)
     this.entities.push(this.luckyBeast)
+    
+    this.timeToNextBun = TIME_BETWEEN_BUNS
   }
 }
 

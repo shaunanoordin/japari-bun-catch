@@ -28,7 +28,6 @@ class LuckyBeast extends Entity {
   }
   
   paint (layer = 0) {
-    const app = this._app
     const c2d = this._app.canvas2d
     const animationSpritesheet = app.assets.luckyBeast
     if (!animationSpritesheet) return
@@ -41,12 +40,12 @@ class LuckyBeast extends Entity {
     c2d.fill()
     */
     
-    const srcX = (this.direction === DIRECTIONS.EAST) ? WIDTH * 2 : 0
+    const srcSizeX = WIDTH * 2, srcSizeY = HEIGHT * 2  // Lucky Beast sprite is 200x200
+    const srcX = (this.direction === DIRECTIONS.EAST) ? srcSizeX : 0
     const srcY = 0
-    const srcSizeX = WIDTH * 2, srcSizeY = HEIGHT * 2
+    const tgtSizeX = WIDTH, tgtSizeY = WIDTH
     const tgtX = X_COORDS[this.col]
     const tgtY = Y_COORDS
-    const tgtSizeX = WIDTH, tgtSizeY = WIDTH
     
     c2d.drawImage(animationSpritesheet.img, srcX, srcY, srcSizeX, srcSizeY, tgtX, tgtY, tgtSizeX, tgtSizeY)
   }
