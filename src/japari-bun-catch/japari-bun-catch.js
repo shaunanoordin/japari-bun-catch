@@ -26,6 +26,7 @@ class JapariBunCatch {
     this.initialised = false
     this.assets = {
       luckyBeast: new ImageAsset('assets/lucky-beast.png'),
+      bun: new ImageAsset('assets/bun.png'),
     }
     
     this.luckyBeast = null

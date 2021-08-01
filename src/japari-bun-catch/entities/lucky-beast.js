@@ -1,8 +1,10 @@
 import Entity from '../entity'
 import { COLUMNS_FOR_LUCKY_BEAST, DIRECTIONS } from '../constants'
 
-const WIDTH = 100
-const HEIGHT = 100
+const SRC_SIZE_X = 200
+const SRC_SIZE_Y = 200
+const TGT_SIZE_X = 100
+const TGT_SIZE_Y = 100
 const Y_COORDS = 300
 const X_COORDS = [
   100, 200, 300, 400, 500, 600
@@ -40,14 +42,12 @@ class LuckyBeast extends Entity {
     c2d.fill()
     */
     
-    const srcSizeX = WIDTH * 2, srcSizeY = HEIGHT * 2  // Lucky Beast sprite is 200x200
-    const srcX = (this.direction === DIRECTIONS.EAST) ? srcSizeX : 0
+    const srcX = (this.direction === DIRECTIONS.EAST) ? SRC_SIZE_X : 0
     const srcY = 0
-    const tgtSizeX = WIDTH, tgtSizeY = WIDTH
     const tgtX = X_COORDS[this.col]
     const tgtY = Y_COORDS
     
-    c2d.drawImage(animationSpritesheet.img, srcX, srcY, srcSizeX, srcSizeY, tgtX, tgtY, tgtSizeX, tgtSizeY)
+    c2d.drawImage(animationSpritesheet.img, srcX, srcY, SRC_SIZE_X, SRC_SIZE_Y, tgtX, tgtY, TGT_SIZE_X, TGT_SIZE_Y)
   }
   
   move (direction) {

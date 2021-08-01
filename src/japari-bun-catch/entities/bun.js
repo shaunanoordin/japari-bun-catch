@@ -1,8 +1,10 @@
 import Entity from '../entity'
 import { EXPECTED_TIMESTEP, COLUMNS_FOR_BUNS, ROWS_FOR_BUNS, LUCKY_BEAST_ROW, FAILURE_ROW } from '../constants'
 
-const WIDTH = 50
-const HEIGHT = 50
+const SRC_SIZE_X = 100
+const SRC_SIZE_Y = 100
+const TGT_SIZE_X = 50
+const TGT_SIZE_Y = 50
 const Y_COORDS = [
   25, 125, 225, 325, 425
 ]
@@ -10,7 +12,7 @@ const X_COORDS = [
   125, 225, 325, 425, 525
 ]
 
-const DROP_TIMER_MAX = 30
+const DROP_TIMER_MAX = 60
 
 class Bun extends Entity {
   constructor (app, col) {
@@ -20,7 +22,7 @@ class Bun extends Entity {
     this.col = col
     this.buns = 0
     
-    this.dropSpeed = 1
+    this.dropSpeed = 1.5
     this.dropTimer = 0
   }
   
@@ -46,15 +48,19 @@ class Bun extends Entity {
   }
   
   paint (layer = 0) {
+    
     const c2d = this._app.canvas2d
+    const animationSpritesheet = app.assets.bun
+    if (!animationSpritesheet) return
     
     if (this._expired) return
     
-    c2d.fillStyle = '#48c'
-    c2d.beginPath()
-    c2d.rect(X_COORDS[this.col], Y_COORDS[this.row], WIDTH, HEIGHT)
-    c2d.closePath()
-    c2d.fill()
+    const srcX = 0
+    const srcY = 0
+    const tgtX = X_COORDS[this.col]
+    const tgtY = Y_COORDS[this.row]
+    
+    c2d.drawImage(animationSpritesheet.img, srcX, srcY, SRC_SIZE_X, SRC_SIZE_Y, tgtX, tgtY, TGT_SIZE_X, TGT_SIZE_Y)
   }
 }
   
