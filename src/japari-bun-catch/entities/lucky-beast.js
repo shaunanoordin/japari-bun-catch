@@ -1,5 +1,5 @@
 import Entity from '../entity'
-import { COLUMNS_FOR_LUCKY_BEAST, DIRECTIONS } from '../constants'
+import { COLUMNS_FOR_LUCKY_BEAST, DIRECTIONS, MAX_BUNS_LUCKY_BEAST_CAN_CARRY } from '../constants'
 
 const SRC_SIZE_X = 200
 const SRC_SIZE_Y = 200
@@ -63,6 +63,14 @@ class LuckyBeast extends Entity {
     }
     
     this.col = Math.max(Math.min(this.col, COLUMNS_FOR_LUCKY_BEAST - 1), 0)
+  }
+  
+  canTakeBun () {
+    return this.buns < MAX_BUNS_LUCKY_BEAST_CAN_CARRY
+  }
+  
+  takeBun () {
+    this.buns++
   }
 }
   

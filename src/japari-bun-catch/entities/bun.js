@@ -35,6 +35,20 @@ class Bun extends Entity {
     const app = this._app
     super.play(timeStep)
     
+    const luckyBeast = app.luckyBeast
+    if (!luckyBeast) return
+    
+    if (this._expired) return
+    
+    if (this.row === LUCKY_BEAST_ROW
+        && this.col === luckyBeast.col
+        && luckyBeast.canTakeBun()
+    ) {
+      luckyBeast.takeBun()
+      this._expired = true
+      return
+    }
+    
     this.dropTimer += this.dropSpeed * timeStep / EXPECTED_TIMESTEP
     if (this.dropTimer >= DROP_TIMER_MAX) {
       this.dropTimer -= DROP_TIMER_MAX
