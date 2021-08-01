@@ -62,11 +62,11 @@ class Bun extends Entity {
   }
   
   paint (layer = 0) {
-    
     const c2d = this._app.canvas2d
     const animationSpritesheet = app.assets.bun
     if (!animationSpritesheet) return
     
+    if (layer !== 0) return
     if (this._expired) return
     
     const srcX = 0

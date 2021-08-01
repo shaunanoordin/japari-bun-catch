@@ -1,4 +1,5 @@
 import Entity from '../entity'
+import Basket from './basket'
 import { COLUMNS_FOR_LUCKY_BEAST, DIRECTIONS, MAX_BUNS_LUCKY_BEAST_CAN_CARRY } from '../constants'
 
 const SRC_SIZE_X = 200
@@ -17,6 +18,7 @@ class LuckyBeast extends Entity {
     this.direction = DIRECTIONS.EAST
     this.col = 0
     this.buns = 0
+    this.basket = new Basket(app, this)
   }
   
   /*
@@ -34,6 +36,8 @@ class LuckyBeast extends Entity {
     const animationSpritesheet = app.assets.luckyBeast
     if (!animationSpritesheet) return
     
+    if (layer !== 1) return
+    
     /*
     c2d.fillStyle = '#48c'
     c2d.beginPath()
@@ -48,6 +52,8 @@ class LuckyBeast extends Entity {
     const tgtY = Y_COORDS
     
     c2d.drawImage(animationSpritesheet.img, srcX, srcY, SRC_SIZE_X, SRC_SIZE_Y, tgtX, tgtY, TGT_SIZE_X, TGT_SIZE_Y)
+    
+    this.basket.paint(layer)
   }
   
   move (direction) {

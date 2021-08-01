@@ -25,8 +25,9 @@ class JapariBunCatch {
     
     this.initialised = false
     this.assets = {
-      luckyBeast: new ImageAsset('assets/lucky-beast.png'),
+      basket: new ImageAsset('assets/basket.png'),
       bun: new ImageAsset('assets/bun.png'),
+      luckyBeast: new ImageAsset('assets/lucky-beast.png'),
     }
     
     this.luckyBeast = null
@@ -126,7 +127,10 @@ class JapariBunCatch {
 
     // Draw entities
     // ----------------
-    this.entities.forEach(entity => entity.paint())
+    const MAX_LAYER = 2
+    for (let layer = 0 ; layer < MAX_LAYER ; layer++) {
+      this.entities.forEach(entity => entity.paint(layer))
+    }
     // ----------------
     
     // Draw UI data
