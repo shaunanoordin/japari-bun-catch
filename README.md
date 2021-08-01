@@ -2,6 +2,8 @@
 
 A simple Kemono Friends fan game about catching falling Japari Buns and delivering them to a waiting Serval.
 
+Play it at [shaunanoordin.github.io/japari-bun-catch](https://shaunanoordin.github.io/japari-bun-catch/) !
+
 Created by [Shaun A. Noordin](https://shaunanoordin.com), based on an idea by [くろしろ-san's](https://twitter.com/kuro96siro46/) [tweet](https://twitter.com/kuro96siro46/status/1421139739126558722?s=19)
 
 Special thanks to <a href="https://twitter.com/JimForonda" target="_blank">Jim Foronda</a>,
