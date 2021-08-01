@@ -4,11 +4,28 @@ A simple Kemono Friends fan game about catching falling Japari Buns and deliveri
 
 Play it at [shaunanoordin.github.io/japari-bun-catch](https://shaunanoordin.github.io/japari-bun-catch/) !
 
-Created by [Shaun A. Noordin](https://shaunanoordin.com), based on an idea by [くろしろ-san's](https://twitter.com/kuro96siro46/) [tweet](https://twitter.com/kuro96siro46/status/1421139739126558722?s=19)
+- Move Lucky Beast left and right to catch buns.
+- Don't let buns fall to the floor!
+- Get 3 buns and Serval will appear. Move towards her to deliver and score points.
+- Lucky Beast can carry up to 6 buns.
 
-Special thanks to <a href="https://twitter.com/JimForonda" target="_blank">Jim Foronda</a>,
-<a href="https://twitter.com/EaterofPi" target="_blank">Eater of Pi</a>,
-and the <a href="https://twitter.com/JapariLibrary" target="_blank">Japari Library</a>!
+
+Created by [Shaun A. Noordin](https://shaunanoordin.com), based on an idea by [くろしろ-san's](https://twitter.com/kuro96siro46/) [tweet](https://twitter.com/kuro96siro46/status/1421139739126558722)
+
+Special thanks to [Jim Foronda](https://twitter.com/JimForonda),
+[Eater of Pi](https://twitter.com/EaterofPi),
+and the [Japari Library](https://twitter.com/JapariLibrary)!
+
+--------
+
+**じゃぱりまんきゃっち！**
+
+「けものフレンズ」のファンゲームです、落ちてくるじゃぱりまんを捕まえて待っているサーバルに届ける。
+
+[Shaun A. Noordin](https://shaunanoordin.com) によって作られました。
+[くろしろさん](https://twitter.com/kuro96siro46)に[よるアイデア](https://twitter.com/kuro96siro46/status/1421139739126558722)。
+
+--------
 
 ## How to Use
 

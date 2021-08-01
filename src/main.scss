@@ -103,9 +103,19 @@ table {
     max-height: 100vh;
   }
   
-  #controls {
-    max-width: 100vw;
-    margin: auto auto;
+  #menu {
+    display: block;
+    overflow: auto;
+    position: absolute;
+    border: 1px solid $white;
+    visibility: visible;
+    background: rgba(128, 128, 128, 0.5);
+    
+    > div {
+      background: #fff;
+      margin: 1em;
+      padding: 1em;
+    }
   }
   
   .ui-button {
@@ -129,34 +139,35 @@ table {
       display: block;
       width: 1.5rem;
       height: 1.5rem;
+      margin: auto;
     }
   }
   
-  .control-button {
-    cursor: pointer;
-    color: #fff;
-    background: #c44;
-    border: 2px solid #ccc;
-    border-radius: 1rem;
-    box-shadow: 0.1rem 0.1rem 0 rgba(0, 0, 0, 0.5);
-    
-    &:hover {
-      border: 2px solid #fff;
-    }
-    
-    &:active {
-      border: 2px solid #888;
-    }
-    
-    img {
-      display: block;
-      width: 1.5rem;
-      height: 1.5rem;
-    }
+  #button-home {
+    top: 0.5em;
+    left: 0.5em;
   }
   
   #button-reload {
     top: 3.5em;
     left: 0.5em;
+  }
+  
+  #button-left, #button-right {
+    bottom: 3em;
+    
+    img {
+      width: 10rem;
+      max-width: 5vw;
+      height: 20vh;
+    }
+  }
+  
+  #button-left {
+    left: 0.5em;
+  }
+
+  #button-right {
+    right: 0.5em;
   }
 }

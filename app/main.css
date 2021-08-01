@@ -85,9 +85,18 @@ table th {
 #app > main.fullscreen #canvas {
   max-height: 100vh;
 }
-#app > main #controls {
-  max-width: 100vw;
-  margin: auto auto;
+#app > main #menu {
+  display: block;
+  overflow: auto;
+  position: absolute;
+  border: 1px solid #fff;
+  visibility: visible;
+  background: rgba(128, 128, 128, 0.5);
+}
+#app > main #menu > div {
+  background: #fff;
+  margin: 1em;
+  padding: 1em;
 }
 #app > main .ui-button {
   position: absolute;
@@ -108,29 +117,29 @@ table th {
   display: block;
   width: 1.5rem;
   height: 1.5rem;
+  margin: auto;
 }
-#app > main .control-button {
-  cursor: pointer;
-  color: #fff;
-  background: #c44;
-  border: 2px solid #ccc;
-  border-radius: 1rem;
-  box-shadow: 0.1rem 0.1rem 0 rgba(0, 0, 0, 0.5);
-}
-#app > main .control-button:hover {
-  border: 2px solid #fff;
-}
-#app > main .control-button:active {
-  border: 2px solid #888;
-}
-#app > main .control-button img {
-  display: block;
-  width: 1.5rem;
-  height: 1.5rem;
+#app > main #button-home {
+  top: 0.5em;
+  left: 0.5em;
 }
 #app > main #button-reload {
   top: 3.5em;
   left: 0.5em;
+}
+#app > main #button-left, #app > main #button-right {
+  bottom: 3em;
+}
+#app > main #button-left img, #app > main #button-right img {
+  width: 10rem;
+  max-width: 5vw;
+  height: 20vh;
+}
+#app > main #button-left {
+  left: 0.5em;
+}
+#app > main #button-right {
+  right: 0.5em;
 }
 
 /*# sourceMappingURL=main.css.map */
