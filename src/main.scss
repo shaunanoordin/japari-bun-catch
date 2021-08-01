@@ -95,9 +95,7 @@ table {
     margin: auto auto;
     max-width: 100vw;
     max-height: 80vh;
-    cursor: pointer;
     user-select: none;
-    touch-action: none;
     background: $white;
   }
   
@@ -105,63 +103,9 @@ table {
     max-height: 100vh;
   }
   
-  #menu {
-    display: block;
-    overflow: auto;
-    position: absolute;
-    border: 1px solid $white;
-    visibility: visible;
-    background: rgba(128, 128, 128, 0.5);
-
-    #banner {
-      display: block;
-      width: 50%;
-      margin: 0 auto;
-    }
-    
-    > p {
-      font-size: 0.8em;
-      margin: 1em auto;
-      background: $white;
-      max-width: 40em;
-      border-radius: 1em;
-      
-      padding: 0.5em 1em;
-    }
-
-    #levels-list {
-      font-size: 0.8em;
-      margin: 1em auto;
-      background: $white;
-      max-width: 40em;
-      border-radius: 1em;
-      
-      > div {
-        padding: 0.5em 1em;
-      
-        button {
-          cursor: pointer;
-          color: #fff;
-          background: #c44;
-          border: 2px solid #ccc;
-          border-radius: 1rem;
-          box-shadow: 0.1rem 0.1rem 0 rgba(0, 0, 0, 0.5);
-          width: 10em;
-          
-          &:hover {
-            border: 2px solid #fff;
-          }
-
-          &:active {
-            border: 2px solid #888;
-          }
-        }
-        
-        span {
-          margin-left: 1em;
-        }
-      }
-    }
+  #controls {
+    max-width: 100vw;
+    margin: auto auto;
   }
   
   .ui-button {
@@ -188,14 +132,27 @@ table {
     }
   }
   
-  #button-home {
-    top: 0.5em;
-    left: 0.5em;
-  }
-  
-  #button-fullscreen {
-    top: 0.5em;
-    right: 0.5em;
+  .control-button {
+    cursor: pointer;
+    color: #fff;
+    background: #c44;
+    border: 2px solid #ccc;
+    border-radius: 1rem;
+    box-shadow: 0.1rem 0.1rem 0 rgba(0, 0, 0, 0.5);
+    
+    &:hover {
+      border: 2px solid #fff;
+    }
+    
+    &:active {
+      border: 2px solid #888;
+    }
+    
+    img {
+      display: block;
+      width: 1.5rem;
+      height: 1.5rem;
+    }
   }
   
   #button-reload {
