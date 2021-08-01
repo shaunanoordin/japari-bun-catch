@@ -222,6 +222,10 @@ class JapariBunCatch {
         case 'Escape':
           this.setMenu(!this.menu)
           break
+        case 'R':
+        case 'r':
+          this.startGame()
+          break
         case 'ArrowRight':
           this.luckyBeast.move(DIRECTIONS.EAST)
           return stopEvent(e)

@@ -80,8 +80,10 @@ class LuckyBeast extends Entity {
   }
   
   giveBuns () {
-    this._app.score += this.buns
+    const score = this.buns
+    this._app.score += score
     this.buns = 0
+    return score
   }
 }
   
