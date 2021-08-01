@@ -21,6 +21,10 @@ export const DELIVERY_COL = COLUMNS_FOR_LUCKY_BEAST - 1  // Column where Lucky B
 export const MIN_BUNS_FOR_FRIEND_TO_APPEAR = 3
 export const MAX_BUNS_LUCKY_BEAST_CAN_CARRY = 6
 
+export const STARTING_LIVES = 3
+
+export const MINIMUM_PAUSE_DURATION = 1000
+
 /*
 While the engine is technically able to support any given framerate (determined
 by the hardware), a baseline is required to ground our video game logic to.

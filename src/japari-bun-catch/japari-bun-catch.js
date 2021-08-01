@@ -1,6 +1,7 @@
 import {
   APP_WIDTH, APP_HEIGHT, TILE_SIZE, DIRECTIONS,
   TIME_BETWEEN_BUNS, ROWS_FOR_BUNS, COLUMNS_FOR_BUNS,
+  STARTING_LIVES, MINIMUM_PAUSE_DURATION,
 } from './constants'
 import ImageAsset from './image-asset'
 import LuckyBeast from './entities/lucky-beast'
@@ -42,8 +43,11 @@ class JapariBunCatch {
     this.friend = null
     this.entities = []
     
+    this.lives = 0
     this.score = 0
     this.timeToNextBun = 0
+    this.paused = false  // Game is paused when a bun drops to the floor. Pausing due to the menu being open is dictated by this.menu
+    this.pauseTimer = 0  // When the game is paused, it stays paused for a short amount of time.
     
     this.prevTime = null
     this.nextFrame = window.requestAnimationFrame(this.main.bind(this))
@@ -99,6 +103,12 @@ class JapariBunCatch {
     // If the menu is open, pause all action gameplay
     if (this.menu) return
     
+    // If game is paused (as a result of losing a life), pause all action gameplay, of course
+    if (this.paused) {
+      this.pauseTimer = Math.max(0, this.pauseTimer - timeStep)
+      return
+    }
+    
     // Run entity logic
     this.entities.forEach(entity => entity.play(timeStep))
     
@@ -146,14 +156,49 @@ class JapariBunCatch {
     }
     // ----------------
     
-    // Draw UI data
+    // Draw pause overlay (indicating a bun just dropped to the floor)
+    // ----------------
+    if (this.paused) {
+      const PAUSE_OFFSET = 20
+      c2d.fillStyle = 'rgba(255, 255, 255, 0.5)'
+      c2d.beginPath()
+      c2d.rect(0, 0, APP_WIDTH, APP_HEIGHT)
+      c2d.closePath()
+      c2d.fill()
+      
+      c2d.textAlign = 'center'
+      c2d.textBaseline = 'middle'
+      c2d.fillStyle = '#000'
+      
+      if (this.lives > 0) {
+        c2d.font = '1em monospace'
+        c2d.fillText('No problem, let\'s try again!', APP_WIDTH / 2, APP_HEIGHT / 2 - PAUSE_OFFSET)
+        c2d.fillText('大丈夫、もう一度やってみよう！', APP_WIDTH / 2, APP_HEIGHT / 2 + PAUSE_OFFSET)
+      } else {
+        c2d.font = '1.5em monospace'
+        c2d.fillText('Good job! おめでとう！', APP_WIDTH / 2, APP_HEIGHT / 2 - PAUSE_OFFSET)
+        c2d.fillText(this.score + ' すごい', APP_WIDTH / 2, APP_HEIGHT / 2 + PAUSE_OFFSET)
+      }
+    }
+    // ----------------
+    
+    // Draw UI data: score
     // ----------------
     const OFFSET = 20
     c2d.textAlign = 'right'
     c2d.textBaseline = 'top'
     c2d.fillStyle = '#c44'
-    c2d.font = '1em monospace'
+    c2d.font = '1.5em monospace'
     c2d.fillText(this.score + ' すごい', APP_WIDTH - OFFSET, OFFSET)
+    // ----------------
+    
+    // Draw UI data: lives
+    // ----------------
+    c2d.textAlign = 'left'
+    c2d.textBaseline = 'top'
+    c2d.fillStyle = '#c44'
+    c2d.font = '2em monospace'
+    c2d.fillText('❤'.repeat(this.lives), OFFSET, OFFSET)
     // ----------------
   }
   
@@ -209,9 +254,14 @@ class JapariBunCatch {
     if (menu) {
       this.html.menu.style.visibility = 'visible'
       this.html.buttonReload.style.visibility = 'hidden'
+      this.html.buttonLeft.style.visibility = 'hidden'
+      this.html.buttonRight.style.visibility = 'hidden'
     } else {
       this.html.menu.style.visibility = 'hidden'
       this.html.buttonReload.style.visibility = 'visible'
+      this.html.buttonLeft.style.visibility = 'visible'
+      this.html.buttonRight.style.visibility = 'visible'
+      
       this.html.main.focus()
     }
   }
@@ -222,12 +272,16 @@ class JapariBunCatch {
         case 'Escape':
           this.setMenu(!this.menu)
           break
+        case 'R':
+        case 'r':
+          this.startGame()
+          break
         case 'ArrowRight':
-          this.luckyBeast.move(DIRECTIONS.EAST)
+          this.moveLuckyBeast(DIRECTIONS.EAST)
           return stopEvent(e)
           break
         case 'ArrowLeft':
-          this.luckyBeast.move(DIRECTIONS.WEST)
+          this.moveLuckyBeast(DIRECTIONS.WEST)
           return stopEvent(e)
           break
       }
@@ -244,13 +298,11 @@ class JapariBunCatch {
   }
   
   buttonLeft_onClick () {
-    if (this.menu) return
-    this.luckyBeast.move(DIRECTIONS.WEST)
+    this.moveLuckyBeast(DIRECTIONS.WEST)
   }
   
   buttonRight_onClick () {
-    if (this.menu) return
-    this.luckyBeast.move(DIRECTIONS.EAST)
+    this.moveLuckyBeast(DIRECTIONS.EAST)
   }
   
   /*
@@ -258,9 +310,17 @@ class JapariBunCatch {
   ----------------------------------------------------------------------------
    */
   
-  startGame () {
+  /*
+  Start the game. Triggers when game loads, or reloads.
+   */
+  startGame (resetScore = true) {
+    if (resetScore) {
+      this.lives = STARTING_LIVES
+      this.score = 0
+    }
+    
     this.entities = []
-    this.score = 0
+    
     
     this.luckyBeast = new LuckyBeast(this)
     this.entities.push(this.luckyBeast)
@@ -269,6 +329,38 @@ class JapariBunCatch {
     this.entities.push(this.friend)
     
     this.timeToNextBun = TIME_BETWEEN_BUNS
+    this.paused = false
+  }
+  
+  /*
+  Stop the game after dropping a bun (losing a life).
+   */
+  stopGame () {
+    if (this.paused) return  // Don't trigger this more than once
+    this.lives = Math.max(0, this.lives - 1)
+    this.paused = true
+    this.pauseTimer = MINIMUM_PAUSE_DURATION
+  }
+  
+  /*
+  Continue the game after game is paused.
+   */
+  continueGame () {
+    if (this.pauseTimer > 0) return
+    if (this.lives > 0) {
+      this.startGame(false)
+    }
+  }
+  
+  moveLuckyBeast (direction) {
+    if (this.menu) return
+    
+    if (this.paused) {
+      this.continueGame()
+      return
+    }
+    
+    this.luckyBeast.move(direction)
   }
 }
 

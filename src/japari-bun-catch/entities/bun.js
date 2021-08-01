@@ -56,6 +56,7 @@ class Bun extends Entity {
       this.row += 1
       
       if (this.row > FAILURE_ROW) {
+        app.stopGame()
         this._expired = true  
       }
     }
