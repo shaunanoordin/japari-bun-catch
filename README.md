@@ -4,7 +4,7 @@ A simple Kemono Friends fan game about catching falling Japari Buns and deliveri
 
 Play it at [shaunanoordin.github.io/japari-bun-catch](https://shaunanoordin.github.io/japari-bun-catch/) !
 
-Created by [Shaun A. Noordin](https://shaunanoordin.com), based on an idea by [くろしろ-san's](https://twitter.com/kuro96siro46/) [tweet](https://twitter.com/kuro96siro46/status/1421139739126558722?s=19)
+Created by [Shaun A. Noordin](https://shaunanoordin.com), based on an idea by [くろしろ-san's](https://twitter.com/kuro96siro46/) [tweet](https://twitter.com/kuro96siro46/status/1421139739126558722)
 
 Special thanks to [Jim Foronda](https://twitter.com/JimForonda),
 [Eater of Pi](https://twitter.com/EaterofPi),
