@@ -2,9 +2,11 @@ export const TILE_SIZE = 50
 export const APP_WIDTH = 800
 export const APP_HEIGHT = 500
 
-export const PLAYER_ACTIONS = {
-  IDLE: 'idle',  // Player isn't doing anything
-  POINTER_DOWN: 'pointer down',  // Player is actively interacting with the canvas.
+export const DIRECTIONS = {
+  EAST: 0,
+  SOUTH: 1,
+  WEST: 2,
+  NORTH: 3,
 }
 
 export const COLUMNS_FOR_BUNS = 5

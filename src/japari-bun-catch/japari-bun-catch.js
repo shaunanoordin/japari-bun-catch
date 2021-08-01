@@ -1,6 +1,5 @@
 import {
-  APP_WIDTH, APP_HEIGHT, TILE_SIZE,
-  PLAYER_ACTIONS,
+  APP_WIDTH, APP_HEIGHT, TILE_SIZE, DIRECTIONS,
 } from './constants'
 import ImageAsset from './image-asset'
 import LuckyBeast from './entities/lucky-beast'
@@ -23,7 +22,9 @@ class JapariBunCatch {
     this.setupUI()
     
     this.initialised = false
-    this.assets = {}
+    this.assets = {
+      luckyBeast: new ImageAsset('assets/lucky-beast.png'),
+    }
     
     this.luckyBeast = null
     this.entities = []
@@ -159,11 +160,11 @@ class JapariBunCatch {
     if (this.luckyBeast) {
       switch (e.key) {
         case 'ArrowRight':
-          this.luckyBeast.move(1)
+          this.luckyBeast.move(DIRECTIONS.EAST)
           return stopEvent(e)
           break
         case 'ArrowLeft':
-          this.luckyBeast.move(-1)
+          this.luckyBeast.move(DIRECTIONS.WEST)
           return stopEvent(e)
           break
       }
