@@ -1,4 +1,5 @@
 import Entity from '../entity'
+import { MAX_BUNS_LUCKY_BEAST_CAN_CARRY } from '../constants'
 
 const SRC_SIZE_X = 200
 const SRC_SIZE_Y = 150
@@ -38,6 +39,14 @@ class Basket extends Entity {
     const tgtY = Y_COORDS
     
     c2d.drawImage(animationSpritesheet.img, srcX, srcY, SRC_SIZE_X, SRC_SIZE_Y, tgtX, tgtY, TGT_SIZE_X, TGT_SIZE_Y)
+    
+    if (this.luckyBeast.buns >= MAX_BUNS_LUCKY_BEAST_CAN_CARRY) {
+      c2d.textAlign = 'center'
+      c2d.textBaseline = 'top'
+      c2d.fillStyle = '#c44'
+      c2d.font = '1em monospace'
+      c2d.fillText('FULL! いっぱい!', tgtX + TGT_SIZE_X / 2, tgtY)
+    }
   }
 }
   
