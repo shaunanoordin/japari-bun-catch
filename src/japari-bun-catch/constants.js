@@ -23,6 +23,8 @@ export const MAX_BUNS_LUCKY_BEAST_CAN_CARRY = 6
 
 export const STARTING_LIVES = 3
 
+export const MINIMUM_PAUSE_DURATION = 1000
+
 /*
 While the engine is technically able to support any given framerate (determined
 by the hardware), a baseline is required to ground our video game logic to.

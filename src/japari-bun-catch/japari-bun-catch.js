@@ -1,7 +1,7 @@
 import {
   APP_WIDTH, APP_HEIGHT, TILE_SIZE, DIRECTIONS,
   TIME_BETWEEN_BUNS, ROWS_FOR_BUNS, COLUMNS_FOR_BUNS,
-  STARTING_LIVES,
+  STARTING_LIVES, MINIMUM_PAUSE_DURATION,
 } from './constants'
 import ImageAsset from './image-asset'
 import LuckyBeast from './entities/lucky-beast'
@@ -47,6 +47,7 @@ class JapariBunCatch {
     this.score = 0
     this.timeToNextBun = 0
     this.paused = false  // Game is paused when a bun drops to the floor. Pausing due to the menu being open is dictated by this.menu
+    this.pauseTimer = 0  // When the game is paused, it stays paused for a short amount of time.
     
     this.prevTime = null
     this.nextFrame = window.requestAnimationFrame(this.main.bind(this))
@@ -103,7 +104,10 @@ class JapariBunCatch {
     if (this.menu) return
     
     // If game is paused (as a result of losing a life), pause all action gameplay, of course
-    if (this.paused) return
+    if (this.paused) {
+      this.pauseTimer = Math.max(0, this.pauseTimer - timeStep)
+      return
+    }
     
     // Run entity logic
     this.entities.forEach(entity => entity.play(timeStep))
@@ -335,12 +339,14 @@ class JapariBunCatch {
     if (this.paused) return  // Don't trigger this more than once
     this.lives = Math.max(0, this.lives - 1)
     this.paused = true
+    this.pauseTimer = MINIMUM_PAUSE_DURATION
   }
   
   /*
   Continue the game after game is paused.
    */
   continueGame () {
+    if (this.pauseTimer > 0) return
     if (this.lives > 0) {
       this.startGame(false)
     }
