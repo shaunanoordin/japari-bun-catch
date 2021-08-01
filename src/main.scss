@@ -110,6 +110,12 @@ table {
     border: 1px solid $white;
     visibility: visible;
     background: rgba(128, 128, 128, 0.5);
+    
+    > div {
+      background: #fff;
+      margin: 1em;
+      padding: 1em;
+    }
   }
   
   .ui-button {

@@ -93,6 +93,11 @@ table th {
   visibility: visible;
   background: rgba(128, 128, 128, 0.5);
 }
+#app > main #menu > div {
+  background: #fff;
+  margin: 1em;
+  padding: 1em;
+}
 #app > main .ui-button {
   position: absolute;
   cursor: pointer;
