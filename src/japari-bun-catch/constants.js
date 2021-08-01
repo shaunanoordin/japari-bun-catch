@@ -12,9 +12,13 @@ export const DIRECTIONS = {
 export const TIME_BETWEEN_BUNS = 1500
 export const COLUMNS_FOR_BUNS = 5
 export const ROWS_FOR_BUNS = 5
-export const LUCKY_BEAST_ROW = 3  // 4th row, actually
-export const FAILURE_ROW = 4  // 5th row, actually
 export const COLUMNS_FOR_LUCKY_BEAST = 6
+
+export const LUCKY_BEAST_ROW = 3  // 4th row, where Lucky Beast can catch falling buns.
+export const FAILURE_ROW = 4  // 5th row, where uncaught buns splat on the ground.
+export const DELIVERY_COL = COLUMNS_FOR_LUCKY_BEAST - 1  // Column where Lucky Beast delivers the buns to a friend.
+
+export const MIN_BUNS_FOR_FRIEND_TO_APPEAR = 3
 export const MAX_BUNS_LUCKY_BEAST_CAN_CARRY = 6
 
 /*

@@ -78,6 +78,10 @@ class LuckyBeast extends Entity {
   takeBun () {
     this.buns++
   }
+  
+  giveBuns () {
+    this.buns = 0
+  }
 }
   
 export default LuckyBeast

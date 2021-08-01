@@ -4,6 +4,7 @@ import {
 } from './constants'
 import ImageAsset from './image-asset'
 import LuckyBeast from './entities/lucky-beast'
+import Friend from './entities/friend'
 import Bun from './entities/bun'
 
 const searchParams = new URLSearchParams(window.location.search)
@@ -27,10 +28,12 @@ class JapariBunCatch {
     this.assets = {
       basket: new ImageAsset('assets/basket.png'),
       bun: new ImageAsset('assets/bun.png'),
+      friends: new ImageAsset('assets/friends.png'),
       luckyBeast: new ImageAsset('assets/lucky-beast.png'),
     }
     
     this.luckyBeast = null
+    this.friend = null
     this.entities = []
     
     this.timeToNextBun = 0
@@ -202,6 +205,9 @@ class JapariBunCatch {
     
     this.luckyBeast = new LuckyBeast(this)
     this.entities.push(this.luckyBeast)
+    
+    this.friend = new Friend(this)
+    this.entities.push(this.friend)
     
     this.timeToNextBun = TIME_BETWEEN_BUNS
   }
