@@ -15,7 +15,7 @@ export const ROWS_FOR_BUNS = 5
 export const LUCKY_BEAST_ROW = 3  // 4th row, actually
 export const FAILURE_ROW = 4  // 5th row, actually
 export const COLUMNS_FOR_LUCKY_BEAST = 6
-export const MAX_BUNS_LUCKY_BEAST_CAN_CARRY = 3
+export const MAX_BUNS_LUCKY_BEAST_CAN_CARRY = 6
 
 /*
 While the engine is technically able to support any given framerate (determined
