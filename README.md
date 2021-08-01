@@ -6,9 +6,9 @@ Play it at [shaunanoordin.github.io/japari-bun-catch](https://shaunanoordin.gith
 
 Created by [Shaun A. Noordin](https://shaunanoordin.com), based on an idea by [くろしろ-san's](https://twitter.com/kuro96siro46/) [tweet](https://twitter.com/kuro96siro46/status/1421139739126558722?s=19)
 
-Special thanks to <a href="https://twitter.com/JimForonda" target="_blank">Jim Foronda</a>,
-<a href="https://twitter.com/EaterofPi" target="_blank">Eater of Pi</a>,
-and the <a href="https://twitter.com/JapariLibrary" target="_blank">Japari Library</a>!
+Special thanks to [Jim Foronda](https://twitter.com/JimForonda),
+[Eater of Pi](https://twitter.com/EaterofPi),
+and the [Japari Library](https://twitter.com/JapariLibrary)!
 
 ## How to Use
 

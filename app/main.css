@@ -85,6 +85,14 @@ table th {
 #app > main.fullscreen #canvas {
   max-height: 100vh;
 }
+#app > main #menu {
+  display: block;
+  overflow: auto;
+  position: absolute;
+  border: 1px solid #fff;
+  visibility: visible;
+  background: rgba(128, 128, 128, 0.5);
+}
 #app > main .ui-button {
   position: absolute;
   cursor: pointer;
@@ -106,6 +114,14 @@ table th {
   height: 1.5rem;
   margin: auto;
 }
+#app > main #button-home {
+  top: 0.5em;
+  left: 0.5em;
+}
+#app > main #button-reload {
+  top: 3.5em;
+  left: 0.5em;
+}
 #app > main #button-left, #app > main #button-right {
   bottom: 3em;
 }
@@ -119,10 +135,6 @@ table th {
 }
 #app > main #button-right {
   right: 0.5em;
-}
-#app > main #button-reload {
-  top: 3.5em;
-  left: 0.5em;
 }
 
 /*# sourceMappingURL=main.css.map */

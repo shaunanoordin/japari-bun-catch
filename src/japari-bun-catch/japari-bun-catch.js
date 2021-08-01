@@ -15,15 +15,19 @@ class JapariBunCatch {
     this.html = {
       main: document.getElementById('main'),
       canvas: document.getElementById('canvas'),
+      menu: document.getElementById('menu'),
+      buttonHome: document.getElementById('button-home'),
+      buttonReload: document.getElementById('button-reload'),
       buttonLeft: document.getElementById('button-left'),
       buttonRight: document.getElementById('button-right'),
-      buttonReload: document.getElementById('button-reload'),
     }
     
     this.canvas2d = this.html.canvas.getContext('2d')
     this.canvasWidth = APP_WIDTH
     this.canvasHeight = APP_HEIGHT
     
+    this.menu = false
+    this.setMenu(false)
     this.setupUI()
     
     this.initialised = false
@@ -92,6 +96,9 @@ class JapariBunCatch {
   }
   
   play (timeStep) {
+    // If the menu is open, pause all action gameplay
+    if (this.menu) return
+    
     // Run entity logic
     this.entities.forEach(entity => entity.play(timeStep))
     
@@ -159,6 +166,7 @@ class JapariBunCatch {
     this.html.canvas.width = this.canvasWidth
     this.html.canvas.height = this.canvasHeight
     
+    this.html.buttonHome.addEventListener('click', this.buttonHome_onClick.bind(this))
     this.html.buttonReload.addEventListener('click', this.buttonReload_onClick.bind(this))
     this.html.buttonLeft.addEventListener('click', this.buttonLeft_onClick.bind(this))
     this.html.buttonRight.addEventListener('click', this.buttonRight_onClick.bind(this))
@@ -173,17 +181,39 @@ class JapariBunCatch {
   }
   
   hideUI () {
+    this.html.buttonHome.style.visibility = 'hidden'
     this.html.buttonReload.style.visibility = 'hidden'
+    this.html.buttonLeft.style.visibility = 'hidden'
+    this.html.buttonRight.style.visibility = 'hidden'
   }
   
   showUI () {
+    this.html.buttonHome.style.visibility = 'visible'
     this.html.buttonReload.style.visibility = 'visible'
+    this.html.buttonLeft.style.visibility = 'visible'
+    this.html.buttonRight.style.visibility = 'visible'
   }
   
   updateUI () {
     // Fit the Interaction layer to the canvas
     const mainDivBounds = this.html.main.getBoundingClientRect()
     const canvasBounds = this.html.canvas.getBoundingClientRect()
+    this.html.menu.style.width = `${canvasBounds.width}px`
+    this.html.menu.style.height = `${canvasBounds.height}px`
+    this.html.menu.style.top = `${canvasBounds.top - mainDivBounds.top}px`
+    this.html.menu.style.left = `${canvasBounds.left}px`
+  }
+  
+  setMenu (menu) {
+    this.menu = menu
+    if (menu) {
+      this.html.menu.style.visibility = 'visible'
+      this.html.buttonReload.style.visibility = 'hidden'
+    } else {
+      this.html.menu.style.visibility = 'hidden'
+      this.html.buttonReload.style.visibility = 'visible'
+      this.html.main.focus()
+    }
   }
   
   onKeyDown (e) {
@@ -201,16 +231,22 @@ class JapariBunCatch {
     }
   }
   
+  buttonHome_onClick () {
+    this.setMenu(!this.menu)
+  }
+  
   buttonReload_onClick () {
     this.startGame()
     this.html.main.focus()
   }
   
   buttonLeft_onClick () {
+    if (this.menu) return
     this.luckyBeast.move(DIRECTIONS.WEST)
   }
   
   buttonRight_onClick () {
+    if (this.menu) return
     this.luckyBeast.move(DIRECTIONS.EAST)
   }
   

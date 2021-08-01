@@ -103,6 +103,15 @@ table {
     max-height: 100vh;
   }
   
+  #menu {
+    display: block;
+    overflow: auto;
+    position: absolute;
+    border: 1px solid $white;
+    visibility: visible;
+    background: rgba(128, 128, 128, 0.5);
+  }
+  
   .ui-button {
     position: absolute;
     cursor: pointer;
@@ -128,6 +137,16 @@ table {
     }
   }
   
+  #button-home {
+    top: 0.5em;
+    left: 0.5em;
+  }
+  
+  #button-reload {
+    top: 3.5em;
+    left: 0.5em;
+  }
+  
   #button-left, #button-right {
     bottom: 3em;
     
@@ -144,10 +163,5 @@ table {
 
   #button-right {
     right: 0.5em;
-  }
-  
-  #button-reload {
-    top: 3.5em;
-    left: 0.5em;
   }
 }
