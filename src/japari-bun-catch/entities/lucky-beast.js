@@ -3,7 +3,7 @@ import { COLUMNS_FOR_LUCKY_BEAST, DIRECTIONS } from '../constants'
 
 const WIDTH = 100
 const HEIGHT = 100
-const Y_COORDS = 350
+const Y_COORDS = 300
 const X_COORDS = [
   100, 200, 300, 400, 500, 600
 ]
