@@ -119,12 +119,19 @@ table th {
   height: 1.5rem;
   margin: auto;
 }
+#app > main .ui-button span {
+  font-size: 0.5rem;
+  display: block;
+  width: 1.5rem;
+  height: 1rem;
+  margin: auto;
+}
 #app > main #button-home {
   top: 0.5em;
   left: 0.5em;
 }
 #app > main #button-reload {
-  top: 3.5em;
+  top: 4.5em;
   left: 0.5em;
 }
 #app > main #button-left, #app > main #button-right {
