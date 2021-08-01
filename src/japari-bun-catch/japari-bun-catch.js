@@ -152,13 +152,39 @@ class JapariBunCatch {
     }
     // ----------------
     
+    // Draw pause overlay (indicating a bun just dropped to the floor)
+    // ----------------
+    if (this.paused) {
+      const PAUSE_OFFSET = 20
+      c2d.fillStyle = 'rgba(255, 255, 255, 0.5)'
+      c2d.beginPath()
+      c2d.rect(0, 0, APP_WIDTH, APP_HEIGHT)
+      c2d.closePath()
+      c2d.fill()
+      
+      c2d.textAlign = 'center'
+      c2d.textBaseline = 'middle'
+      c2d.fillStyle = '#000'
+      
+      if (this.lives > 0) {
+        c2d.font = '1em monospace'
+        c2d.fillText('No problem, let\'s try again!', APP_WIDTH / 2, APP_HEIGHT / 2 - PAUSE_OFFSET)
+        c2d.fillText('大丈夫、もう一度やってみよう！', APP_WIDTH / 2, APP_HEIGHT / 2 + PAUSE_OFFSET)
+      } else {
+        c2d.font = '1.5em monospace'
+        c2d.fillText('Good job! おめでとう！', APP_WIDTH / 2, APP_HEIGHT / 2 - PAUSE_OFFSET)
+        c2d.fillText(this.score + ' すごい', APP_WIDTH / 2, APP_HEIGHT / 2 + PAUSE_OFFSET)
+      }
+    }
+    // ----------------
+    
     // Draw UI data: score
     // ----------------
     const OFFSET = 20
     c2d.textAlign = 'right'
     c2d.textBaseline = 'top'
     c2d.fillStyle = '#c44'
-    c2d.font = '1em monospace'
+    c2d.font = '1.5em monospace'
     c2d.fillText(this.score + ' すごい', APP_WIDTH - OFFSET, OFFSET)
     // ----------------
     
@@ -167,7 +193,7 @@ class JapariBunCatch {
     c2d.textAlign = 'left'
     c2d.textBaseline = 'top'
     c2d.fillStyle = '#c44'
-    c2d.font = '1em monospace'
+    c2d.font = '2em monospace'
     c2d.fillText('❤'.repeat(this.lives), OFFSET, OFFSET)
     // ----------------
   }
