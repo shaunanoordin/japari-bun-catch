@@ -219,6 +219,9 @@ class JapariBunCatch {
   onKeyDown (e) {
     if (this.luckyBeast) {
       switch (e.key) {
+        case 'Escape':
+          this.setMenu(!this.menu)
+          break
         case 'ArrowRight':
           this.luckyBeast.move(DIRECTIONS.EAST)
           return stopEvent(e)
