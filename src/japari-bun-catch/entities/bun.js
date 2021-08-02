@@ -73,7 +73,7 @@ class Bun extends Entity {
     if (this._expired) return
     
     const srcX = 0
-    const srcY = 0
+    const srcY = (this.row >= FAILURE_ROW) ? SRC_SIZE_X : 0  // If at the failure row, show the "splatted" bun
     const tgtX = X_COORDS[this.col]
     const tgtY = Y_COORDS[this.row]
     
