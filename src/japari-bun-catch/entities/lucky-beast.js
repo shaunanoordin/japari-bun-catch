@@ -81,7 +81,8 @@ class LuckyBeast extends Entity {
   
   giveBuns () {
     const score = this.buns
-    this._app.score += score
+    this._app.increaseScore(score)
+    this._app.increaseDifficulty()
     this.buns = 0
     return score
   }

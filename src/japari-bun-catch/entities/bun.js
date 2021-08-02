@@ -12,17 +12,19 @@ const X_COORDS = [
   125, 225, 325, 425, 525
 ]
 
+const BASE_DROP_SPEED = 1.5
 const DROP_TIMER_MAX = 60
+const DIFFICULTY_MODIFIER = 0.5
 
 class Bun extends Entity {
-  constructor (app, col) {
+  constructor (app, col, difficulty = 0) {
     super(app)
 
     this.row = 0
     this.col = col
     this.buns = 0
     
-    this.dropSpeed = 1.5
+    this.dropSpeed = BASE_DROP_SPEED + difficulty * DIFFICULTY_MODIFIER
     this.dropTimer = 0
   }
   
