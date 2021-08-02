@@ -43,8 +43,8 @@ class Basket extends Entity {
     
     if (this.luckyBeast.buns >= MAX_BUNS_LUCKY_BEAST_CAN_CARRY) {
       c2d.textAlign = 'center'
-      c2d.textBaseline = 'top'
-      c2d.font = '1em monospace'
+      c2d.textBaseline = 'bottom'
+      c2d.font = '1.25em monospace'
       fillTextWithShadow(c2d, 'FULL! いっぱい!', tgtX + TGT_SIZE_X / 2, tgtY)
     }
   }

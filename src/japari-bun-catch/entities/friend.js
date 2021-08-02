@@ -67,7 +67,7 @@ class Friend extends Entity {
         c2d.font = '2em monospace'
         fillTextWithShadow(c2d, '+' + this.scoreDisplayText, X_COORDS + TGT_SIZE_X / 2, Y_COORDS + OFFSET_2)
         c2d.font = '1em monospace'
-        fillTextWithShadow(c2d, '+⭐', X_COORDS + TGT_SIZE_X / 2, Y_COORDS + OFFSET_3)
+        c2d.fillText('+⭐', X_COORDS + TGT_SIZE_X / 2, Y_COORDS + OFFSET_3)
       }
     }
   }
