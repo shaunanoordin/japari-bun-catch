@@ -33,6 +33,7 @@ class JapariBunCatch {
     
     this.initialised = false
     this.assets = {
+      background: new ImageAsset('assets/background.jpg'),
       basket: new ImageAsset('assets/basket.png'),
       bun: new ImageAsset('assets/bun.png'),
       friends: new ImageAsset('assets/friends.png'),
@@ -134,8 +135,18 @@ class JapariBunCatch {
     c2d.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
     // ----------------
     
+    // Draw background
+    // ----------------
+    if (this.assets.background) {
+      const BACKGROUND_SIZE_X = 800
+      const BACKGROUND_SIZE_Y = 500
+      c2d.drawImage(this.assets.background.img, 0, 0, BACKGROUND_SIZE_X, BACKGROUND_SIZE_Y, 0, 0, APP_WIDTH, APP_HEIGHT)
+    }
+    // ----------------
+    
     // Draw grid
     // ----------------
+    /*
     c2d.strokeStyle = 'rgba(128, 128, 128, 0.05)'
     c2d.lineWidth = 2
     const offsetX = 0
@@ -149,6 +160,7 @@ class JapariBunCatch {
         c2d.stroke()
       }
     }
+    */
     // ----------------
 
     // Draw entities
@@ -185,33 +197,36 @@ class JapariBunCatch {
     }
     // ----------------
     
+    const SCREEN_EDGE_OFFSET = 20
+    const SHADOW_X = 1
+    const SHADOW_Y = 2
+    
     // Draw UI data: score
     // ----------------
-    const OFFSET = 20
     c2d.textAlign = 'right'
     c2d.textBaseline = 'top'
-    c2d.fillStyle = '#c44'
+    c2d.fillStyle = '#e44'
     c2d.font = '1.5em monospace'
-    c2d.fillText(this.score + ' すごい', APP_WIDTH - OFFSET, OFFSET)
+    c2d.fillText(this.score + ' すごい', APP_WIDTH - SCREEN_EDGE_OFFSET, SCREEN_EDGE_OFFSET)
     // ----------------
     
     // Draw UI data: lives
     // ----------------
     c2d.textAlign = 'left'
     c2d.textBaseline = 'top'
-    c2d.fillStyle = '#c44'
+    c2d.fillStyle = '#e44'
     c2d.font = '2em monospace'
-    c2d.fillText('❤'.repeat(this.lives), OFFSET, OFFSET)
+    c2d.fillText('❤'.repeat(this.lives), SCREEN_EDGE_OFFSET, SCREEN_EDGE_OFFSET)
     // ----------------
     
     // Draw UI data: difficulty
     // ----------------
-    const OFFSET_DIFFICULTY = OFFSET + 40
+    const DIFFICULTY_OFFSET = SCREEN_EDGE_OFFSET + 40
     c2d.textAlign = 'left'
     c2d.textBaseline = 'top'
     c2d.fillStyle = '#444'
     c2d.font = '1em monospace'
-    c2d.fillText('⭐'.repeat(this.difficulty), OFFSET, OFFSET_DIFFICULTY)
+    c2d.fillText('⭐'.repeat(this.difficulty), SCREEN_EDGE_OFFSET, DIFFICULTY_OFFSET)
     // ----------------
   }
   

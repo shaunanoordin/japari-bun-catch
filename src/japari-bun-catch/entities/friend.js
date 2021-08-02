@@ -61,7 +61,7 @@ class Friend extends Entity {
         const OFFSET_3 = 5
         c2d.textAlign = 'center'
         c2d.textBaseline = 'bottom'
-        c2d.fillStyle = '#c44'
+        c2d.fillStyle = '#e44'
         c2d.font = '1em monospace'
         c2d.fillText('すごい〜！', X_COORDS + TGT_SIZE_X / 2, Y_COORDS + OFFSET_1)
         c2d.font = '2em monospace'
