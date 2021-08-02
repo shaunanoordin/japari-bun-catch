@@ -45,6 +45,7 @@ class JapariBunCatch {
     
     this.lives = 0
     this.score = 0
+    this.difficulty = 0
     this.timeToNextBun = 0
     this.paused = false  // Game is paused when a bun drops to the floor. Pausing due to the menu being open is dictated by this.menu
     this.pauseTimer = 0  // When the game is paused, it stays paused for a short amount of time.
@@ -117,7 +118,7 @@ class JapariBunCatch {
     if (this.timeToNextBun <= 0) {
       this.timeToNextBun += TIME_BETWEEN_BUNS
       const newCol = Math.floor(Math.random() * COLUMNS_FOR_BUNS)
-      const newBun = new Bun(this, newCol)
+      const newBun = new Bun(this, newCol, this.difficulty)
       this.entities.push(newBun)
     }
     
@@ -319,8 +320,9 @@ class JapariBunCatch {
       this.score = 0
     }
     
-    this.entities = []
+    this.difficulty = 0
     
+    this.entities = []
     
     this.luckyBeast = new LuckyBeast(this)
     this.entities.push(this.luckyBeast)
@@ -350,6 +352,17 @@ class JapariBunCatch {
     if (this.lives > 0) {
       this.startGame(false)
     }
+  }
+  
+  increaseScore (score) {
+    this.score += score
+  }
+  
+  /*
+  Difficulty increases every time Lucky Beast delivers buns
+   */
+  increaseDifficulty () {
+    this.difficulty++
   }
   
   moveLuckyBeast (direction) {
