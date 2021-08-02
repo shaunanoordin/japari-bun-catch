@@ -1,4 +1,4 @@
-# Japari Bun Catch
+# Japari Bun Catch!
 
 A simple Kemono Friends fan game about catching falling Japari Buns and delivering them to a waiting Serval.
 
