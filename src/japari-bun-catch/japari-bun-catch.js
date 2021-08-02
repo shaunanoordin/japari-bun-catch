@@ -203,6 +203,16 @@ class JapariBunCatch {
     c2d.font = '2em monospace'
     c2d.fillText('❤'.repeat(this.lives), OFFSET, OFFSET)
     // ----------------
+    
+    // Draw UI data: difficulty
+    // ----------------
+    const OFFSET_DIFFICULTY = OFFSET + 40
+    c2d.textAlign = 'left'
+    c2d.textBaseline = 'top'
+    c2d.fillStyle = '#444'
+    c2d.font = '1em monospace'
+    c2d.fillText('⭐'.repeat(this.difficulty), OFFSET, OFFSET_DIFFICULTY)
+    // ----------------
   }
   
   /*

@@ -56,14 +56,18 @@ class Friend extends Entity {
       }
     } else if (layer === 1) {
       if (this.scoreDisplayTimer > 0) {
-        const OFFSET_1 = 50
-        const OFFSET_2 = 70
+        const OFFSET_1 = -50
+        const OFFSET_2 = -15
+        const OFFSET_3 = 5
         c2d.textAlign = 'center'
         c2d.textBaseline = 'bottom'
         c2d.fillStyle = '#c44'
         c2d.font = '1em monospace'
         c2d.fillText('すごい〜！', X_COORDS + TGT_SIZE_X / 2, Y_COORDS + OFFSET_1)
+        c2d.font = '2em monospace'
         c2d.fillText('+' + this.scoreDisplayText, X_COORDS + TGT_SIZE_X / 2, Y_COORDS + OFFSET_2)
+        c2d.font = '1em monospace'
+        c2d.fillText('+⭐', X_COORDS + TGT_SIZE_X / 2, Y_COORDS + OFFSET_3)
       }
     }
   }
