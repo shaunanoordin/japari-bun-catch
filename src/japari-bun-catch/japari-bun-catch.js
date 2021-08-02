@@ -116,7 +116,9 @@ class JapariBunCatch {
     // Spawn a new bun
     this.timeToNextBun -= timeStep
     if (this.timeToNextBun <= 0) {
-      this.timeToNextBun += TIME_BETWEEN_BUNS
+      const DIFFICULTY_MODIFIER = 0.2
+      const timeToBun = TIME_BETWEEN_BUNS / (1 + this.difficulty * DIFFICULTY_MODIFIER)
+      this.timeToNextBun += timeToBun
       const newCol = Math.floor(Math.random() * COLUMNS_FOR_BUNS)
       const newBun = new Bun(this, newCol, this.difficulty)
       this.entities.push(newBun)
