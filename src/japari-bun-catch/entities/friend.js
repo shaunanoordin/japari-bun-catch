@@ -9,12 +9,41 @@ const TGT_SIZE_Y = 150
 const X_COORDS = 650
 const Y_COORDS = 200
 
+const FRIENDS = [
+  {
+    name: 'serval',
+    srcX: 0,
+    srcY: 0,
+  },
+  {
+    name: 'arai-san',
+    srcX: SRC_SIZE_X,
+    srcY: 0,
+  },
+  {
+    name: 'fennec',
+    srcX: SRC_SIZE_X * 2,
+    srcY: 0,
+  },
+  {
+    name: 'white-serval',
+    srcX: 0,
+    srcY: SRC_SIZE_Y,
+  },
+  {
+    name: 'okapi',
+    srcX: SRC_SIZE_X,
+    srcY: SRC_SIZE_Y,
+  },
+]
+
 const SCORE_DISPLAY_DURATION = 3000
 
 class Friend extends Entity {
   constructor (app, col) {
     super(app)
     
+    this.selectedFriend = null
     this.scoreDisplayTimer = 0
     this.scoreDisplayText = ''
   }
@@ -33,7 +62,13 @@ class Friend extends Entity {
     // Friend only appears to receive buns when LB has at least 3 buns.
     if (!luckyBeast) return
     if (luckyBeast.buns >= MIN_BUNS_FOR_FRIEND_TO_APPEAR
+        && !this.selectedFriend) {
+      this.selectedFriend = FRIENDS[Math.floor(Math.random() * FRIENDS.length)]
+    }
+    
+    if (luckyBeast.buns >= MIN_BUNS_FOR_FRIEND_TO_APPEAR
         && luckyBeast.col === DELIVERY_COL) {
+      this.selectedFriend = null
       this.scoreDisplayTimer = SCORE_DISPLAY_DURATION
       const score = luckyBeast.giveBuns()
       this.scoreDisplayText = score
@@ -48,8 +83,8 @@ class Friend extends Entity {
     
     if (layer === 0) {
       if (luckyBeast.buns >= MIN_BUNS_FOR_FRIEND_TO_APPEAR) {
-        const srcX = 0
-        const srcY = 0
+        const srcX = (this.selectedFriend) ? this.selectedFriend.srcX : 0
+        const srcY = (this.selectedFriend) ? this.selectedFriend.srcY : 0
         const tgtX = X_COORDS
         const tgtY = Y_COORDS
 
