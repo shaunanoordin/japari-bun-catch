@@ -19,11 +19,13 @@ const FRIENDS = [
     name: 'arai-san',
     srcX: SRC_SIZE_X,
     srcY: 0,
+    text: 'なのだ〜!',
   },
   {
     name: 'fennec',
     srcX: SRC_SIZE_X * 2,
     srcY: 0,
+    text: 'はい、ありがとう〜',
   },
   {
     name: 'white-serval',
@@ -44,6 +46,7 @@ class Friend extends Entity {
     super(app)
     
     this.selectedFriend = null
+    this.friendsText = ''
     this.scoreDisplayTimer = 0
     this.scoreDisplayText = ''
   }
@@ -59,11 +62,16 @@ class Friend extends Entity {
     
     this.scoreDisplayTimer = Math.max(0, this.scoreDisplayTimer - timeStep)
     
-    // Friend only appears to receive buns when LB has at least 3 buns.
     if (!luckyBeast) return
+    
+    // Spawn a Friend.
+    // Friends only appears to receive buns when LB has at least 3 buns.
     if (luckyBeast.buns >= MIN_BUNS_FOR_FRIEND_TO_APPEAR
         && !this.selectedFriend) {
       this.selectedFriend = FRIENDS[Math.floor(Math.random() * FRIENDS.length)]
+      this.friendsText = this.selectedFriend.text || 'すごい〜！'
+      this.scoreDisplayTimer = 0
+      this.scoreDisplayText = ''
     }
     
     if (luckyBeast.buns >= MIN_BUNS_FOR_FRIEND_TO_APPEAR
@@ -98,7 +106,7 @@ class Friend extends Entity {
         c2d.textAlign = 'center'
         c2d.textBaseline = 'bottom'
         c2d.font = `1em ${FONT_FAMILY}`
-        fillTextWithShadow(c2d, 'すごい〜！', X_COORDS + TGT_SIZE_X / 2, Y_COORDS + OFFSET_1)
+        fillTextWithShadow(c2d, this.friendsText, X_COORDS + TGT_SIZE_X / 2, Y_COORDS + OFFSET_1)
         c2d.font = `2em ${FONT_FAMILY}`
         fillTextWithShadow(c2d, '+' + this.scoreDisplayText, X_COORDS + TGT_SIZE_X / 2, Y_COORDS + OFFSET_2)
         c2d.font = `1em ${FONT_FAMILY}`
