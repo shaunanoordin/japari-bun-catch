@@ -19,11 +19,11 @@ body {
 }
 
 a {
-  color: #c44;
+  color: #ee9944;
   text-decoration: none;
 }
 a:hover {
-  color: #e66;
+  color: #ff9933;
 }
 
 table {
@@ -49,7 +49,7 @@ table th {
   font-size: 0.5rem;
   flex: 0 0 auto;
   padding: 0.5rem;
-  background: #c44;
+  background: #ee9944;
   color: #eee;
 }
 
@@ -67,7 +67,7 @@ table th {
 }
 
 #app > main {
-  background: #444 url("../assets/simple-bg.png");
+  background: #eeddaa;
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
@@ -102,7 +102,7 @@ table th {
   position: absolute;
   cursor: pointer;
   color: #fff;
-  background: #c44;
+  background: #ee9944;
   border: 2px solid #ccc;
   border-radius: 1rem;
   box-shadow: 0.1rem 0.1rem 0 rgba(0, 0, 0, 0.5);

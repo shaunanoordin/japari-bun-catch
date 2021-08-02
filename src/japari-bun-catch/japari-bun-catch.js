@@ -205,7 +205,7 @@ class JapariBunCatch {
     // ----------------
     c2d.textAlign = 'right'
     c2d.textBaseline = 'top'
-    c2d.fillStyle = '#e44'
+    c2d.fillStyle = '#ee9944'
     c2d.font = '1.5em monospace'
     c2d.fillText(this.score + ' すごい', APP_WIDTH - SCREEN_EDGE_OFFSET, SCREEN_EDGE_OFFSET)
     // ----------------
@@ -214,7 +214,7 @@ class JapariBunCatch {
     // ----------------
     c2d.textAlign = 'left'
     c2d.textBaseline = 'top'
-    c2d.fillStyle = '#e44'
+    c2d.fillStyle = '#ee4444'
     c2d.font = '2em monospace'
     c2d.fillText('❤'.repeat(this.lives), SCREEN_EDGE_OFFSET, SCREEN_EDGE_OFFSET)
     // ----------------

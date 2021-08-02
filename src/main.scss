@@ -6,8 +6,9 @@ $dark-grey: #666;
 $dark: #444;
 $black: #000;
 
-$primary: #c44;
-$primary-highlight: #e66;
+$primary: #ee9944;
+$primary-highlight: #ff9933;
+$primary-faint: #eeddaa;
 
 * {
   box-sizing: border-box;
@@ -83,7 +84,7 @@ table {
 }
 
 #app > main {
-  background: $dark url("../assets/simple-bg.png");
+  background: $primary-faint;
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
@@ -122,7 +123,7 @@ table {
     position: absolute;
     cursor: pointer;
     color: #fff;
-    background: #c44;
+    background: $primary;
     border: 2px solid #ccc;
     border-radius: 1rem;
     box-shadow: 0.1rem 0.1rem 0 rgba(0, 0, 0, 0.5);
