@@ -1,6 +1,6 @@
 import Entity from '../entity'
 import Basket from './basket'
-import { COLUMNS_FOR_LUCKY_BEAST, DIRECTIONS, MAX_BUNS_LUCKY_BEAST_CAN_CARRY } from '../constants'
+import { COLUMNS_FOR_LUCKY_BEAST, DIRECTIONS, MAX_BUNS_LUCKY_BEAST_CAN_CARRY, SCORE_PER_BUN } from '../constants'
 
 const SRC_SIZE_X = 200
 const SRC_SIZE_Y = 200
@@ -38,14 +38,6 @@ class LuckyBeast extends Entity {
     
     if (layer !== 1) return
     
-    /*
-    c2d.fillStyle = '#48c'
-    c2d.beginPath()
-    c2d.rect(X_COORDS[this.col], Y_COORDS, WIDTH, HEIGHT)
-    c2d.closePath()
-    c2d.fill()
-    */
-    
     const srcX = (this.direction === DIRECTIONS.EAST) ? SRC_SIZE_X : 0
     const srcY = 0
     const tgtX = X_COORDS[this.col]
@@ -80,7 +72,7 @@ class LuckyBeast extends Entity {
   }
   
   giveBuns () {
-    const score = this.buns
+    const score = this.buns * SCORE_PER_BUN
     this._app.increaseScore(score)
     this._app.increaseDifficulty()
     this.buns = 0
