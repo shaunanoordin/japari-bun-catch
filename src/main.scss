@@ -15,7 +15,7 @@ $primary-faint: #eeddaa;
 }
 
 :root {
-  font-family: "Source Code Pro", monospace;
+  font-family: "Noto Sans JP", monospace;
   font-size: 16px;
   background: $white;
   color: $dark;
@@ -71,6 +71,15 @@ table {
   h1 {
     margin: 0;
     padding: 0;
+    font-family: 'Otomanopee One', sans-serif;
+    color: #ee4444;
+    text-shadow:
+      -1px -1px 0 $white,  
+      1px -1px 0 $white,
+      -1px 1px 0 $white,
+      1px 1px 0 $white;
+
+    
   }
 }
 

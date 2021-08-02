@@ -2,6 +2,7 @@ import {
   APP_WIDTH, APP_HEIGHT, TILE_SIZE, DIRECTIONS,
   TIME_BETWEEN_BUNS, ROWS_FOR_BUNS, COLUMNS_FOR_BUNS,
   STARTING_LIVES, MINIMUM_PAUSE_DURATION,
+  FONT_FAMILY,
 } from './constants'
 import { fillTextWithShadow } from './utility'
 import ImageAsset from './image-asset'
@@ -73,7 +74,7 @@ class JapariBunCatch {
     this.canvas2d.textAlign = 'start'
     this.canvas2d.textBaseline = 'top'
     this.canvas2d.fillStyle = '#ccc'
-    this.canvas2d.font = `1em monospace`
+    this.canvas2d.font = `1em ${FONT_FAMILY}`
     this.canvas2d.fillText(`Loading ${numLoadedAssets} / ${numTotalAssets} `, TILE_SIZE, TILE_SIZE)
     
     if (allAssetsLoaded) {
@@ -187,11 +188,11 @@ class JapariBunCatch {
       c2d.fillStyle = '#000'
       
       if (this.lives > 0) {
-        c2d.font = '1em monospace'
+        c2d.font = `1em ${FONT_FAMILY}`
         c2d.fillText('No problem, let\'s try again!', APP_WIDTH / 2, APP_HEIGHT / 2 - PAUSE_OFFSET)
         c2d.fillText('大丈夫、もう一度やってみよう！', APP_WIDTH / 2, APP_HEIGHT / 2 + PAUSE_OFFSET)
       } else {
-        c2d.font = '1.5em monospace'
+        c2d.font = `1.5em ${FONT_FAMILY}`
         c2d.fillText('Good job! おめでとう！', APP_WIDTH / 2, APP_HEIGHT / 2 - PAUSE_OFFSET)
         c2d.fillText(this.score + ' すごい', APP_WIDTH / 2, APP_HEIGHT / 2 + PAUSE_OFFSET)
       }
@@ -206,7 +207,7 @@ class JapariBunCatch {
     // ----------------
     c2d.textAlign = 'right'
     c2d.textBaseline = 'top'
-    c2d.font = '1.5em monospace'
+    c2d.font = `1.5em ${FONT_FAMILY}`
     fillTextWithShadow(c2d, this.score + ' すごい', APP_WIDTH - SCREEN_EDGE_OFFSET, SCREEN_EDGE_OFFSET)
     // ----------------
     
@@ -214,8 +215,8 @@ class JapariBunCatch {
     // ----------------
     c2d.textAlign = 'left'
     c2d.textBaseline = 'top'
-    c2d.font = '2em monospace'
-    fillTextWithShadow(c2d, '❤'.repeat(this.lives), SCREEN_EDGE_OFFSET, SCREEN_EDGE_OFFSET, '#ee4444')
+    c2d.font = `1.5em ${FONT_FAMILY}`
+    fillTextWithShadow(c2d, 'LUCKY BEAST ' + '❤'.repeat(this.lives), SCREEN_EDGE_OFFSET, SCREEN_EDGE_OFFSET, '#ee4444')
     // ----------------
     
     // Draw UI data: difficulty
@@ -224,7 +225,7 @@ class JapariBunCatch {
     c2d.textAlign = 'left'
     c2d.textBaseline = 'top'
     c2d.fillStyle = '#444'
-    c2d.font = '1em monospace'
+    c2d.font = `1em ${FONT_FAMILY}`
     c2d.fillText('⭐'.repeat(this.difficulty), SCREEN_EDGE_OFFSET, DIFFICULTY_OFFSET)
     // ----------------
   }
