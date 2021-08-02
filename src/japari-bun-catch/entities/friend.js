@@ -1,5 +1,6 @@
 import Entity from '../entity'
 import { MIN_BUNS_FOR_FRIEND_TO_APPEAR, DELIVERY_COL } from '../constants'
+import { fillTextWithShadow } from '../utility'
 
 const SRC_SIZE_X = 400
 const SRC_SIZE_Y = 400
@@ -61,13 +62,12 @@ class Friend extends Entity {
         const OFFSET_3 = 5
         c2d.textAlign = 'center'
         c2d.textBaseline = 'bottom'
-        c2d.fillStyle = '#ee9944'
         c2d.font = '1em monospace'
-        c2d.fillText('すごい〜！', X_COORDS + TGT_SIZE_X / 2, Y_COORDS + OFFSET_1)
+        fillTextWithShadow(c2d, 'すごい〜！', X_COORDS + TGT_SIZE_X / 2, Y_COORDS + OFFSET_1)
         c2d.font = '2em monospace'
-        c2d.fillText('+' + this.scoreDisplayText, X_COORDS + TGT_SIZE_X / 2, Y_COORDS + OFFSET_2)
+        fillTextWithShadow(c2d, '+' + this.scoreDisplayText, X_COORDS + TGT_SIZE_X / 2, Y_COORDS + OFFSET_2)
         c2d.font = '1em monospace'
-        c2d.fillText('+⭐', X_COORDS + TGT_SIZE_X / 2, Y_COORDS + OFFSET_3)
+        fillTextWithShadow(c2d, '+⭐', X_COORDS + TGT_SIZE_X / 2, Y_COORDS + OFFSET_3)
       }
     }
   }

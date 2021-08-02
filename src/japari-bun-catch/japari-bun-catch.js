@@ -3,6 +3,7 @@ import {
   TIME_BETWEEN_BUNS, ROWS_FOR_BUNS, COLUMNS_FOR_BUNS,
   STARTING_LIVES, MINIMUM_PAUSE_DURATION,
 } from './constants'
+import { fillTextWithShadow } from './utility'
 import ImageAsset from './image-asset'
 import LuckyBeast from './entities/lucky-beast'
 import Friend from './entities/friend'
@@ -198,25 +199,23 @@ class JapariBunCatch {
     // ----------------
     
     const SCREEN_EDGE_OFFSET = 20
-    const SHADOW_X = 1
-    const SHADOW_Y = 2
+    const SHADOW_X = 2
+    const SHADOW_Y = 1
     
     // Draw UI data: score
     // ----------------
     c2d.textAlign = 'right'
     c2d.textBaseline = 'top'
-    c2d.fillStyle = '#ee9944'
     c2d.font = '1.5em monospace'
-    c2d.fillText(this.score + ' すごい', APP_WIDTH - SCREEN_EDGE_OFFSET, SCREEN_EDGE_OFFSET)
+    fillTextWithShadow(c2d, this.score + ' すごい', APP_WIDTH - SCREEN_EDGE_OFFSET, SCREEN_EDGE_OFFSET)
     // ----------------
     
     // Draw UI data: lives
     // ----------------
     c2d.textAlign = 'left'
     c2d.textBaseline = 'top'
-    c2d.fillStyle = '#ee4444'
     c2d.font = '2em monospace'
-    c2d.fillText('❤'.repeat(this.lives), SCREEN_EDGE_OFFSET, SCREEN_EDGE_OFFSET)
+    fillTextWithShadow(c2d, '❤'.repeat(this.lives), SCREEN_EDGE_OFFSET, SCREEN_EDGE_OFFSET, '#ee4444')
     // ----------------
     
     // Draw UI data: difficulty
@@ -238,6 +237,12 @@ class JapariBunCatch {
   setupUI () {
     this.html.canvas.width = this.canvasWidth
     this.html.canvas.height = this.canvasHeight
+    
+    // Prevent "touch and hold to open context menu" menu on touchscreens.
+    this.html.canvas.addEventListener('touchstart', stopEvent)
+    this.html.canvas.addEventListener('touchmove', stopEvent)
+    this.html.canvas.addEventListener('touchend', stopEvent)
+    this.html.canvas.addEventListener('touchcancel', stopEvent)
     
     this.html.buttonHome.addEventListener('click', this.buttonHome_onClick.bind(this))
     this.html.buttonReload.addEventListener('click', this.buttonReload_onClick.bind(this))

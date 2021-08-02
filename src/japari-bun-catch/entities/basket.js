@@ -1,5 +1,6 @@
 import Entity from '../entity'
 import { MAX_BUNS_LUCKY_BEAST_CAN_CARRY } from '../constants'
+import { fillTextWithShadow } from '../utility'
 
 const SRC_SIZE_X = 200
 const SRC_SIZE_Y = 150
@@ -43,9 +44,8 @@ class Basket extends Entity {
     if (this.luckyBeast.buns >= MAX_BUNS_LUCKY_BEAST_CAN_CARRY) {
       c2d.textAlign = 'center'
       c2d.textBaseline = 'top'
-      c2d.fillStyle = '#ee9944'
       c2d.font = '1em monospace'
-      c2d.fillText('FULL! いっぱい!', tgtX + TGT_SIZE_X / 2, tgtY)
+      fillTextWithShadow(c2d, 'FULL! いっぱい!', tgtX + TGT_SIZE_X / 2, tgtY)
     }
   }
 }
