@@ -6,15 +6,16 @@ $dark-grey: #666;
 $dark: #444;
 $black: #000;
 
-$primary: #c44;
-$primary-highlight: #e66;
+$primary: #ee9944;
+$primary-highlight: #ff9933;
+$primary-faint: #eeddaa;
 
 * {
   box-sizing: border-box;
 }
 
 :root {
-  font-family: "Source Code Pro", monospace;
+  font-family: "Noto Sans JP", monospace;
   font-size: 16px;
   background: $white;
   color: $dark;
@@ -70,6 +71,13 @@ table {
   h1 {
     margin: 0;
     padding: 0;
+    font-family: 'Otomanopee One', sans-serif;
+    color: #ee4444;
+    text-shadow:
+      -1px -1px 0 $white,  
+      1px -1px 0 $white,
+      -1px 1px 0 $white,
+      1px 1px 0 $white;
   }
 }
 
@@ -83,7 +91,7 @@ table {
 }
 
 #app > main {
-  background: $dark url("../assets/simple-bg.png");
+  background: $primary-faint;
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
@@ -122,7 +130,7 @@ table {
     position: absolute;
     cursor: pointer;
     color: #fff;
-    background: #c44;
+    background: $primary;
     border: 2px solid #ccc;
     border-radius: 1rem;
     box-shadow: 0.1rem 0.1rem 0 rgba(0, 0, 0, 0.5);
@@ -165,8 +173,8 @@ table {
     bottom: 3em;
     
     img {
-      width: 10rem;
-      max-width: 5vw;
+      width: 5rem;
+      max-width: 10vw;
       height: 20vh;
     }
   }

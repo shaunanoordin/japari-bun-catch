@@ -1,5 +1,6 @@
 import Entity from '../entity'
-import { MIN_BUNS_FOR_FRIEND_TO_APPEAR, DELIVERY_COL } from '../constants'
+import { MIN_BUNS_FOR_FRIEND_TO_APPEAR, DELIVERY_COL, FONT_FAMILY } from '../constants'
+import { fillTextWithShadow } from '../utility'
 
 const SRC_SIZE_X = 400
 const SRC_SIZE_Y = 400
@@ -8,12 +9,44 @@ const TGT_SIZE_Y = 150
 const X_COORDS = 650
 const Y_COORDS = 200
 
+const FRIENDS = [
+  {
+    name: 'serval',
+    srcX: 0,
+    srcY: 0,
+  },
+  {
+    name: 'arai-san',
+    srcX: SRC_SIZE_X,
+    srcY: 0,
+    text: 'なのだ〜!',
+  },
+  {
+    name: 'fennec',
+    srcX: SRC_SIZE_X * 2,
+    srcY: 0,
+    text: 'はい、ありがとう〜',
+  },
+  {
+    name: 'white-serval',
+    srcX: 0,
+    srcY: SRC_SIZE_Y,
+  },
+  {
+    name: 'okapi',
+    srcX: SRC_SIZE_X,
+    srcY: SRC_SIZE_Y,
+  },
+]
+
 const SCORE_DISPLAY_DURATION = 3000
 
 class Friend extends Entity {
   constructor (app, col) {
     super(app)
     
+    this.selectedFriend = null
+    this.friendsText = ''
     this.scoreDisplayTimer = 0
     this.scoreDisplayText = ''
   }
@@ -29,10 +62,21 @@ class Friend extends Entity {
     
     this.scoreDisplayTimer = Math.max(0, this.scoreDisplayTimer - timeStep)
     
-    // Friend only appears to receive buns when LB has at least 3 buns.
     if (!luckyBeast) return
+    
+    // Spawn a Friend.
+    // Friends only appears to receive buns when LB has at least 3 buns.
+    if (luckyBeast.buns >= MIN_BUNS_FOR_FRIEND_TO_APPEAR
+        && !this.selectedFriend) {
+      this.selectedFriend = FRIENDS[Math.floor(Math.random() * FRIENDS.length)]
+      this.friendsText = this.selectedFriend.text || 'すごい〜！'
+      this.scoreDisplayTimer = 0
+      this.scoreDisplayText = ''
+    }
+    
     if (luckyBeast.buns >= MIN_BUNS_FOR_FRIEND_TO_APPEAR
         && luckyBeast.col === DELIVERY_COL) {
+      this.selectedFriend = null
       this.scoreDisplayTimer = SCORE_DISPLAY_DURATION
       const score = luckyBeast.giveBuns()
       this.scoreDisplayText = score
@@ -47,8 +91,8 @@ class Friend extends Entity {
     
     if (layer === 0) {
       if (luckyBeast.buns >= MIN_BUNS_FOR_FRIEND_TO_APPEAR) {
-        const srcX = 0
-        const srcY = 0
+        const srcX = (this.selectedFriend) ? this.selectedFriend.srcX : 0
+        const srcY = (this.selectedFriend) ? this.selectedFriend.srcY : 0
         const tgtX = X_COORDS
         const tgtY = Y_COORDS
 
@@ -61,12 +105,11 @@ class Friend extends Entity {
         const OFFSET_3 = 5
         c2d.textAlign = 'center'
         c2d.textBaseline = 'bottom'
-        c2d.fillStyle = '#c44'
-        c2d.font = '1em monospace'
-        c2d.fillText('すごい〜！', X_COORDS + TGT_SIZE_X / 2, Y_COORDS + OFFSET_1)
-        c2d.font = '2em monospace'
-        c2d.fillText('+' + this.scoreDisplayText, X_COORDS + TGT_SIZE_X / 2, Y_COORDS + OFFSET_2)
-        c2d.font = '1em monospace'
+        c2d.font = `1em ${FONT_FAMILY}`
+        fillTextWithShadow(c2d, this.friendsText, X_COORDS + TGT_SIZE_X / 2, Y_COORDS + OFFSET_1)
+        c2d.font = `2em ${FONT_FAMILY}`
+        fillTextWithShadow(c2d, '+' + this.scoreDisplayText, X_COORDS + TGT_SIZE_X / 2, Y_COORDS + OFFSET_2)
+        c2d.font = `1em ${FONT_FAMILY}`
         c2d.fillText('+⭐', X_COORDS + TGT_SIZE_X / 2, Y_COORDS + OFFSET_3)
       }
     }

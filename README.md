@@ -1,12 +1,12 @@
-# Japari Bun Catch
+# Japari Bun Catch!
 
-A simple Kemono Friends fan game about catching falling Japari Buns and delivering them to a waiting Serval.
+A simple Kemono Friends fan game about catching falling Japari Buns and delivering them to a waiting Friend.
 
 Play it at [shaunanoordin.github.io/japari-bun-catch](https://shaunanoordin.github.io/japari-bun-catch/) !
 
 - Move Lucky Beast left and right to catch buns.
 - Don't let buns fall to the floor!
-- Get 3 buns and Serval will appear. Move towards her to deliver and score points.
+- Get 3 buns and a Friend will appear. Move towards her to deliver and score points.
 - Lucky Beast can carry up to 6 buns.
 
 

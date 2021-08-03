@@ -9,6 +9,9 @@ export const DIRECTIONS = {
   NORTH: 3,
 }
 
+export const FONT_FAMILY = 'DotGothic16, monospace'
+
+export const SCORE_PER_BUN = 100
 export const TIME_BETWEEN_BUNS = 1500
 export const COLUMNS_FOR_BUNS = 5
 export const ROWS_FOR_BUNS = 5

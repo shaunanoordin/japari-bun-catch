@@ -2,7 +2,9 @@ import {
   APP_WIDTH, APP_HEIGHT, TILE_SIZE, DIRECTIONS,
   TIME_BETWEEN_BUNS, ROWS_FOR_BUNS, COLUMNS_FOR_BUNS,
   STARTING_LIVES, MINIMUM_PAUSE_DURATION,
+  FONT_FAMILY,
 } from './constants'
+import { fillTextWithShadow } from './utility'
 import ImageAsset from './image-asset'
 import LuckyBeast from './entities/lucky-beast'
 import Friend from './entities/friend'
@@ -33,6 +35,7 @@ class JapariBunCatch {
     
     this.initialised = false
     this.assets = {
+      background: new ImageAsset('assets/background.jpg'),
       basket: new ImageAsset('assets/basket.png'),
       bun: new ImageAsset('assets/bun.png'),
       friends: new ImageAsset('assets/friends.png'),
@@ -71,7 +74,7 @@ class JapariBunCatch {
     this.canvas2d.textAlign = 'start'
     this.canvas2d.textBaseline = 'top'
     this.canvas2d.fillStyle = '#ccc'
-    this.canvas2d.font = `1em monospace`
+    this.canvas2d.font = `1em ${FONT_FAMILY}`
     this.canvas2d.fillText(`Loading ${numLoadedAssets} / ${numTotalAssets} `, TILE_SIZE, TILE_SIZE)
     
     if (allAssetsLoaded) {
@@ -134,8 +137,18 @@ class JapariBunCatch {
     c2d.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
     // ----------------
     
+    // Draw background
+    // ----------------
+    if (this.assets.background) {
+      const BACKGROUND_SIZE_X = 800
+      const BACKGROUND_SIZE_Y = 500
+      c2d.drawImage(this.assets.background.img, 0, 0, BACKGROUND_SIZE_X, BACKGROUND_SIZE_Y, 0, 0, APP_WIDTH, APP_HEIGHT)
+    }
+    // ----------------
+    
     // Draw grid
     // ----------------
+    /*
     c2d.strokeStyle = 'rgba(128, 128, 128, 0.05)'
     c2d.lineWidth = 2
     const offsetX = 0
@@ -149,6 +162,7 @@ class JapariBunCatch {
         c2d.stroke()
       }
     }
+    */
     // ----------------
 
     // Draw entities
@@ -174,44 +188,45 @@ class JapariBunCatch {
       c2d.fillStyle = '#000'
       
       if (this.lives > 0) {
-        c2d.font = '1em monospace'
+        c2d.font = `1em ${FONT_FAMILY}`
         c2d.fillText('No problem, let\'s try again!', APP_WIDTH / 2, APP_HEIGHT / 2 - PAUSE_OFFSET)
         c2d.fillText('大丈夫、もう一度やってみよう！', APP_WIDTH / 2, APP_HEIGHT / 2 + PAUSE_OFFSET)
       } else {
-        c2d.font = '1.5em monospace'
+        c2d.font = `1.5em ${FONT_FAMILY}`
         c2d.fillText('Good job! おめでとう！', APP_WIDTH / 2, APP_HEIGHT / 2 - PAUSE_OFFSET)
         c2d.fillText(this.score + ' すごい', APP_WIDTH / 2, APP_HEIGHT / 2 + PAUSE_OFFSET)
       }
     }
     // ----------------
     
+    const SCREEN_EDGE_OFFSET = 20
+    const SHADOW_X = 2
+    const SHADOW_Y = 1
+    
     // Draw UI data: score
     // ----------------
-    const OFFSET = 20
     c2d.textAlign = 'right'
     c2d.textBaseline = 'top'
-    c2d.fillStyle = '#c44'
-    c2d.font = '1.5em monospace'
-    c2d.fillText(this.score + ' すごい', APP_WIDTH - OFFSET, OFFSET)
+    c2d.font = `1.5em ${FONT_FAMILY}`
+    fillTextWithShadow(c2d, this.score + ' すごい', APP_WIDTH - SCREEN_EDGE_OFFSET, SCREEN_EDGE_OFFSET)
     // ----------------
     
     // Draw UI data: lives
     // ----------------
     c2d.textAlign = 'left'
     c2d.textBaseline = 'top'
-    c2d.fillStyle = '#c44'
-    c2d.font = '2em monospace'
-    c2d.fillText('❤'.repeat(this.lives), OFFSET, OFFSET)
+    c2d.font = `1.5em ${FONT_FAMILY}`
+    fillTextWithShadow(c2d, 'LUCKY BEAST ' + '❤'.repeat(this.lives), SCREEN_EDGE_OFFSET, SCREEN_EDGE_OFFSET, '#ee4444')
     // ----------------
     
     // Draw UI data: difficulty
     // ----------------
-    const OFFSET_DIFFICULTY = OFFSET + 40
+    const DIFFICULTY_OFFSET = SCREEN_EDGE_OFFSET + 40
     c2d.textAlign = 'left'
     c2d.textBaseline = 'top'
     c2d.fillStyle = '#444'
-    c2d.font = '1em monospace'
-    c2d.fillText('⭐'.repeat(this.difficulty), OFFSET, OFFSET_DIFFICULTY)
+    c2d.font = `1em ${FONT_FAMILY}`
+    c2d.fillText('⭐'.repeat(this.difficulty), SCREEN_EDGE_OFFSET, DIFFICULTY_OFFSET)
     // ----------------
   }
   
@@ -223,6 +238,12 @@ class JapariBunCatch {
   setupUI () {
     this.html.canvas.width = this.canvasWidth
     this.html.canvas.height = this.canvasHeight
+    
+    // Prevent "touch and hold to open context menu" menu on touchscreens.
+    this.html.canvas.addEventListener('touchstart', stopEvent)
+    this.html.canvas.addEventListener('touchmove', stopEvent)
+    this.html.canvas.addEventListener('touchend', stopEvent)
+    this.html.canvas.addEventListener('touchcancel', stopEvent)
     
     this.html.buttonHome.addEventListener('click', this.buttonHome_onClick.bind(this))
     this.html.buttonReload.addEventListener('click', this.buttonReload_onClick.bind(this))

@@ -1,7 +1,7 @@
 {
   "name": "japari-bun-catch",
   "version": "1.0.0",
-  "description": "A simple Kemono Friends fan game about catching falling Japari Buns and delivering them to a waiting Serval.",
+  "description": "A simple Kemono Friends fan game about catching falling Japari Buns and delivering them to a waiting Friend.",
   "main": "index.js",
   "scripts": {
     "start": "webpack && sass src:app && node server.js",
