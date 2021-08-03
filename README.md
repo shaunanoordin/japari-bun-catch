@@ -20,7 +20,7 @@ and the [Japari Library](https://twitter.com/JapariLibrary)!
 
 **じゃぱりまんきゃっち！**
 
-「けものフレンズ」のファンゲームです、落ちてくるじゃぱりまんを捕まえて待っているサーバルに届ける。
+「けものフレンズ」のファンゲームです、落ちてくるじゃぱりまんを捕まえて待っているフレンズに届ける。
 
 [Shaun A. Noordin](https://shaunanoordin.com) によって作られました。
 [くろしろさん](https://twitter.com/kuro96siro46)に[よるアイデア](https://twitter.com/kuro96siro46/status/1421139739126558722)。
